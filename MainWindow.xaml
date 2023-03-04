@@ -42,60 +42,11 @@
         </Style>
     </Window.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="2"/>
-            <RowDefinition Height="*" MinHeight="300"/>
-        </Grid.RowDefinitions>
-
-        
-        
-        <Button Style="{StaticResource OperatorButton}"
-                Grid.Row="1"
-                Content="History"
-                Foreground="#8380e9">
-            
-        </Button>
-
-        <Grid Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <Button x:Name="PlusBtn" Style="{StaticResource OperatorButton}" Content="+" Grid.Column="3" Grid.Row="1"/>
-            <Button x:Name="MinusBtn" Style="{StaticResource OperatorButton}" Content="-" Grid.Column="3" Grid.Row="2"/>
-            <Button x:Name="MiltiplyBtn" Style="{StaticResource OperatorButton}" Content="*" Grid.Column="2" Grid.Row="0"/>
-            <Button x:Name="DivisionBtn" Style="{StaticResource OperatorButton}" Content="&#x00F7;" Grid.Column="1" Grid.Row="0"/>
-            <Button x:Name="SqrtBtn" Style="{StaticResource OperatorButton}" Content="&#x221a;" Grid.Column="0" Grid.Row="0"/>
-            <Button Style="{StaticResource OperatorButton}" Content="." Grid.Column="2" Grid.Row="4"/>
-                           
-            <Button x:Name="EqualBtn" Style="{StaticResource NumberButton}" Content="="  Background="#8380e9" Grid.Column="3" Grid.Row="3" Grid.RowSpan="2"/>
-            <Button x:Name="BackspaceBtn" Style="{StaticResource NumberButton}" Content="&#x1f824;" Background ="#8380e9" Grid.Column="3" Grid.Row="0"/>
-            <Button x:Name="DotBtn" Style="{StaticResource NumberButton}" Content="C" Background="#8380e9" Grid.Column="0" Grid.Row="4"/>
-                            
-            <Button Style="{StaticResource NumberButton}" Content="9" Grid.Column="2" Grid.Row="1"/>
-            <Button Style="{StaticResource NumberButton}" Content="8" Grid.Column="1" Grid.Row="1"/>
-            <Button Style="{StaticResource NumberButton}" Content="7" Grid.Column="0" Grid.Row="1"/>
-            <Button Style="{StaticResource NumberButton}" Content="6" Grid.Column="2" Grid.Row="2"/>
-            <Button Style="{StaticResource NumberButton}" Content="5" Grid.Column="1" Grid.Row="2"/>
-            <Button Style="{StaticResource NumberButton}" Content="4" Grid.Column="0" Grid.Row="2"/>
-            <Button Style="{StaticResource NumberButton}" Content="3" Grid.Column="2" Grid.Row="3"/>
-            <Button Style="{StaticResource NumberButton}" Content="2" Grid.Column="1" Grid.Row="3"/>
-            <Button Style="{StaticResource NumberButton}" Content="1" Grid.Column="0" Grid.Row="3"/>
-            <Button Style="{StaticResource NumberButton}" Content="0" Grid.Column="1" Grid.Row="4"/>
-        </Grid>
-
-    </Grid>
+    <DockPanel LastChildFill="True">
+        <Button DockPanel.Dock="Top" Background="AliceBlue" Content="Верхняя кнопка" />
+        <Button DockPanel.Dock="Bottom" Background="BlanchedAlmond" Content="Нижняя кнопка" />
+        <Button DockPanel.Dock="Left" Background="Aquamarine" Content="Левая кнопка" />
+        <Button DockPanel.Dock="Right" Background="DarkGreen" Content="Правая кнопка" />
+        <Button Background="LightGreen" Content="Центр" />
+    </DockPanel>
 </Window>
