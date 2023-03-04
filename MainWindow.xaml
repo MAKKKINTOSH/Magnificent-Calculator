@@ -8,10 +8,12 @@
         Title="Magnificent Calculator"
         Height="560"
         Width="320"
-        Background="">
+        MinHeight="560"
+        MinWidth="320"
+        Background="#aecdc5">
     
     <Window.Resources>
-        <Style TargetType="Button" x:Key="CalculatorButton">
+        <Style TargetType="Button" x:Key="NumberButton">
             <Setter Property="Background" Value="#ada4e7"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderBrush" Value="#aecdc5"/>
@@ -20,7 +22,21 @@
             <Setter Property="FontFamily" Value="Arial"/>
             <Style.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="15"/>
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        <Style TargetType="Button" x:Key="OperatorButton">
+            <Setter Property="Background" Value="#aecdc5"/>
+            <Setter Property="Foreground" Value="White"/> 
+            <Setter Property="BorderBrush" Value="#ada4e7"/>
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
                 </Style>
             </Style.Resources>
         </Style>
@@ -28,38 +44,58 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="200"/>
-            <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="2"/>
+            <RowDefinition Height="*" MinHeight="300"/>
         </Grid.RowDefinitions>
+
         
         
-        
-        <Grid Grid.Row="2">
+        <Button Style="{StaticResource OperatorButton}"
+                Grid.Row="1"
+                Content="History"
+                Foreground="#8380e9">
+            
+        </Button>
+
+        <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-            <Button Style="{StaticResource CalculatorButton}" Content="9" Grid.Column="2" Grid.Row="1"/>
-            <Button Style="{StaticResource CalculatorButton}" Content="8" Grid.Column="1" Grid.Row="1"/>
-            <Button Style="{StaticResource CalculatorButton}" Content="7" Grid.Column="0" Grid.Row="1"/>
-            <Button Style="{StaticResource CalculatorButton}" Content="6" Grid.Column="2" Grid.Row="2"/>
-            <Button Style="{StaticResource CalculatorButton}" Content="5" Grid.Column="1" Grid.Row="2"/>
-            <Button Style="{StaticResource CalculatorButton}" Content="4" Grid.Column="0" Grid.Row="2"/>
-            <Button Style="{StaticResource CalculatorButton}" Content="3" Grid.Column="2" Grid.Row="3"/>
-            <Button Style="{StaticResource CalculatorButton}" Content="2" Grid.Column="1" Grid.Row="3"/>
-            <Button Style="{StaticResource CalculatorButton}" Content="1" Grid.Column="0" Grid.Row="3"/>
-            <Button Style="{StaticResource CalculatorButton}" Content="0" Grid.Column="1" Grid.Row="4"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button x:Name="PlusBtn" Style="{StaticResource OperatorButton}" Content="+" Grid.Column="3" Grid.Row="1"/>
+            <Button x:Name="MinusBtn" Style="{StaticResource OperatorButton}" Content="-" Grid.Column="3" Grid.Row="2"/>
+            <Button x:Name="MiltiplyBtn" Style="{StaticResource OperatorButton}" Content="*" Grid.Column="2" Grid.Row="0"/>
+            <Button x:Name="DivisionBtn" Style="{StaticResource OperatorButton}" Content="&#x00F7;" Grid.Column="1" Grid.Row="0"/>
+            <Button x:Name="SqrtBtn" Style="{StaticResource OperatorButton}" Content="&#x221a;" Grid.Column="0" Grid.Row="0"/>
+            <Button Style="{StaticResource OperatorButton}" Content="." Grid.Column="2" Grid.Row="4"/>
+                           
+            <Button x:Name="EqualBtn" Style="{StaticResource NumberButton}" Content="="  Background="#8380e9" Grid.Column="3" Grid.Row="3" Grid.RowSpan="2"/>
+            <Button x:Name="BackspaceBtn" Style="{StaticResource NumberButton}" Content="&#x1f824;" Background ="#8380e9" Grid.Column="3" Grid.Row="0"/>
+            <Button x:Name="DotBtn" Style="{StaticResource NumberButton}" Content="C" Background="#8380e9" Grid.Column="0" Grid.Row="4"/>
+                            
+            <Button Style="{StaticResource NumberButton}" Content="9" Grid.Column="2" Grid.Row="1"/>
+            <Button Style="{StaticResource NumberButton}" Content="8" Grid.Column="1" Grid.Row="1"/>
+            <Button Style="{StaticResource NumberButton}" Content="7" Grid.Column="0" Grid.Row="1"/>
+            <Button Style="{StaticResource NumberButton}" Content="6" Grid.Column="2" Grid.Row="2"/>
+            <Button Style="{StaticResource NumberButton}" Content="5" Grid.Column="1" Grid.Row="2"/>
+            <Button Style="{StaticResource NumberButton}" Content="4" Grid.Column="0" Grid.Row="2"/>
+            <Button Style="{StaticResource NumberButton}" Content="3" Grid.Column="2" Grid.Row="3"/>
+            <Button Style="{StaticResource NumberButton}" Content="2" Grid.Column="1" Grid.Row="3"/>
+            <Button Style="{StaticResource NumberButton}" Content="1" Grid.Column="0" Grid.Row="3"/>
+            <Button Style="{StaticResource NumberButton}" Content="0" Grid.Column="1" Grid.Row="4"/>
         </Grid>
-        
+
     </Grid>
 </Window>
