@@ -8,16 +8,26 @@
         Title="Magnificent Calculator"
         Height="560"
         Width="320"
-        MinHeight="560"
-        MinWidth="320"
-        Background="#aecdc5">
+        MinHeight="564"
+        MinWidth="324"
+        Background="White">
     
     <Window.Resources>
+        <Style TargetType="TextBox" x:Key="TextBox">
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="#ada4e7"/>
+            <Setter Property="TextAlignment" Value="Right"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
         <Style TargetType="Button" x:Key="NumberButton">
             <Setter Property="Background" Value="#ada4e7"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#aecdc5"/>
-            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="FontSize" Value="30"/>
             <Setter Property="BorderThickness" Value="3"/>
             <Setter Property="FontFamily" Value="Arial"/>
             <Style.Resources>
@@ -26,27 +36,77 @@
                 </Style>
             </Style.Resources>
         </Style>
-
-        <Style TargetType="Button" x:Key="OperatorButton">
-            <Setter Property="Background" Value="#aecdc5"/>
-            <Setter Property="Foreground" Value="White"/> 
+        <Style TargetType="Button" x:Key="OperatorButton" BasedOn="{StaticResource NumberButton}">
+            <Setter Property="Foreground" Value="#ada4e7"/>
+            <Setter Property="Background" Value="White"/>
             <Setter Property="BorderBrush" Value="#ada4e7"/>
-            <Setter Property="FontSize" Value="40"/>
-            <Setter Property="BorderThickness" Value="3"/>
-            <Setter Property="FontFamily" Value="Arial"/>
-            <Style.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="10"/>
-                </Style>
-            </Style.Resources>
+        </Style>
+        <Style TargetType="Button" x:Key="SpecialButton" BasedOn="{StaticResource NumberButton}">
+            <Setter Property="Background" Value="#8380e9"/>
         </Style>
     </Window.Resources>
 
-    <DockPanel LastChildFill="True">
-        <Button DockPanel.Dock="Top" Background="AliceBlue" Content="Верхняя кнопка" />
-        <Button DockPanel.Dock="Bottom" Background="BlanchedAlmond" Content="Нижняя кнопка" />
-        <Button DockPanel.Dock="Left" Background="Aquamarine" Content="Левая кнопка" />
-        <Button DockPanel.Dock="Right" Background="DarkGreen" Content="Правая кнопка" />
-        <Button Background="LightGreen" Content="Центр" />
-    </DockPanel>
+    <Grid Margin="2" x:Name="CalculatorGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="2"/>
+            <RowDefinition Height="*" MinHeight="300"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="calculatorDisplay" Grid.Row="0" Margin="10">
+            <TextBox Style="{StaticResource TextBox}" x:Name="firstNumber"/>
+            <TextBox Style="{StaticResource TextBox}" x:Name="operationSymbol" Text=""/>
+            <TextBox Style="{StaticResource TextBox}" x:Name="secondNumber" Text=""/>
+            <TextBox Style="{StaticResource TextBox}" x:Name="answer" Margin="5,15,5,5" Foreground="#8380e9"/>
+        </StackPanel>
+        
+        <Button Style="{StaticResource OperatorButton}"
+                Grid.Row="1"
+                Content="History"
+                Foreground="#8380e9">
+            
+        </Button>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button x:Name="plusBtn" Style="{StaticResource OperatorButton}" Content="+" Grid.Column="3" Grid.Row="1" Click="OperatorButtonClick"/>
+            <Button x:Name="minusBtn" Style="{StaticResource OperatorButton}" Content="-" Grid.Column="3" Grid.Row="2" Click="OperatorButtonClick"/>
+            <Button x:Name="miltiplyBtn" Style="{StaticResource OperatorButton}" Content="*" Grid.Column="2" Grid.Row="0" Click="OperatorButtonClick"/>
+            <Button x:Name="divisionBtn" Style="{StaticResource OperatorButton}" Content="÷" Grid.Column="1" Grid.Row="0" Click="OperatorButtonClick"/>
+            <Button x:Name="powerBtn" Style="{StaticResource OperatorButton}" Content="xⁿ" Grid.Column="0" Grid.Row="0" Click="OperatorButtonClick"/>
+            
+            <Button x:Name="dotBtn" Style="{StaticResource OperatorButton}" Content="." Grid.Column="2" Grid.Row="4" Click="DotButtonClick"/>
+                           
+            <Button x:Name="equalBtn" Style="{StaticResource SpecialButton}" Content="=" Grid.Column="3" Grid.Row="3" Grid.RowSpan="2" IsDefault="True" Click="EqualButtonClick"/>
+            <Button x:Name="backspaceBtn" Style="{StaticResource SpecialButton}" Content="&#x1f824;" Grid.Column="3" Grid.Row="0" Click="BackspaceButtonClick"/>
+            <Button x:Name="cancelBtn" Style="{StaticResource SpecialButton}" Content="C" Grid.Column="0" Grid.Row="4" Click="CancelButtonClick"/>
+
+            <Button x:Name="btn9" Style="{StaticResource NumberButton}" Content="9" Grid.Column="2" Grid.Row="1" Click="NumberButtonClick"/>
+            <Button x:Name="btn8" Style="{StaticResource NumberButton}" Content="8" Grid.Column="1" Grid.Row="1" Click="NumberButtonClick"/>
+            <Button x:Name="btn7" Style="{StaticResource NumberButton}" Content="7" Grid.Column="0" Grid.Row="1" Click="NumberButtonClick"/>
+            <Button x:Name="btn6" Style="{StaticResource NumberButton}" Content="6" Grid.Column="2" Grid.Row="2" Click="NumberButtonClick"/>
+            <Button x:Name="btn5" Style="{StaticResource NumberButton}" Content="5" Grid.Column="1" Grid.Row="2" Click="NumberButtonClick"/>
+            <Button x:Name="btn4" Style="{StaticResource NumberButton}" Content="4" Grid.Column="0" Grid.Row="2" Click="NumberButtonClick"/>
+            <Button x:Name="btn3" Style="{StaticResource NumberButton}" Content="3" Grid.Column="2" Grid.Row="3" Click="NumberButtonClick"/>
+            <Button x:Name="btn2" Style="{StaticResource NumberButton}" Content="2" Grid.Column="1" Grid.Row="3" Click="NumberButtonClick"/>
+            <Button x:Name="btn1" Style="{StaticResource NumberButton}" Content="1" Grid.Column="0" Grid.Row="3" Click="NumberButtonClick"/>
+            <Button x:Name="btn0" Style="{StaticResource NumberButton}" Content="0" Grid.Column="1" Grid.Row="4" Click="NumberButtonClick"/>
+        </Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="664,81,0,0" Grid.Row="3" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+
+    </Grid>
 </Window>
